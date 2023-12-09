@@ -1,0 +1,165 @@
+create DATABASE starfit;
+USE starfit;
+
+-- Crear la tabla Usuario
+CREATE TABLE Usuario (
+    ID_Usuario INT PRIMARY KEY AUTO_INCREMENT,
+    nombre VARCHAR(255),
+    apellidoPaterno VARCHAR(255),
+    apellidoMaterno VARCHAR(255),
+    usuario VARCHAR(50),
+    contrasenia VARCHAR(255),
+    email VARCHAR(255),
+    created_at datetime,
+updated_at datetime null,
+deleted_at datetime null
+);
+
+INSERT INTO Usuario (nombre, apellidoPaterno, apellidoMaterno, usuario, contrasenia, email, created_at)
+VALUES
+    ('Juan', 'Pérez', 'López', 'juanperez', 'contrasenia1', 'juan.perez@example.com', '2023-11-07 10:08:00'),
+    ('María', 'Gómez', 'Sánchez', 'mariagomez', 'contrasenia2', 'maria.gomez@example.com', '2023-11-07 10:15:00'),
+    ('Pedro', 'Rodríguez', 'Martínez', 'pedrorodriguez', 'contrasenia3', 'pedro.rodriguez@example.com', '2023-11-07 10:30:00'),
+    ('Laura', 'Fernández', 'García', 'laurafernandez', 'contrasenia4', 'laura.fernandez@example.com', '2023-11-07 10:45:00'),
+    ('Carlos', 'López', 'Hernández', 'carloslopez', 'contrasenia5', 'carlos.lopez@example.com', '2023-11-07 11:00:00');
+
+CREATE TABLE Clientes (
+    cliente_id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(50),
+    apellidos VARCHAR(50),
+    fecha_nacimiento DATE,
+    correo_electronico VARCHAR(100),
+    telefono VARCHAR(20),
+    direccion VARCHAR(255),
+    fecha_registro DATE,
+    created_at DATETIME,
+    updated_at DATETIME NULL,
+    deleted_at DATETIME NULL
+);
+
+INSERT INTO Clientes (nombre, apellidos, fecha_nacimiento, correo_electronico, telefono, direccion, fecha_registro, created_at)
+VALUES 
+    ('Juan', 'Pérez', '1990-05-15', 'juan.perez@email.com', '555-1234', 'Calle A, Ciudad', '2023-08-29', '2023-08-29 09:00:03'),
+    ('María', 'Gómez', '1985-08-21', 'maria.gomez@email.com', '555-5678', 'Calle B, Ciudad', '2023-08-29', '2023-08-29 09:00:08'),
+    ('Carlos', 'López', '1992-02-10', 'carlos.lopez@email.com', '555-9876', 'Calle C, Ciudad', '2023-08-12', '2023-08-12 09:14:03'),
+    ('Ana', 'Martínez', '1988-11-30', 'ana.martinez@email.com', '555-4321', 'Calle D, Ciudad', '2023-08-12', '2023-08-12 09:20:03'),
+    ('Luis', 'Ramírez', '1995-07-02', 'luis.ramirez@email.com', '555-8765', 'Calle E, Ciudad', '2023-07-29', '2023-07-29 09:10:03');
+
+
+CREATE TABLE Instructores (
+    instructor_id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre_instructor VARCHAR(50),
+    especialidad VARCHAR(50),
+    correo_electronico VARCHAR(100),
+    telefono VARCHAR(20),
+    direccion VARCHAR(255),
+    created_at DATETIME,
+    updated_at DATETIME NULL,
+    deleted_at DATETIME NULL
+);
+
+INSERT INTO Instructores (nombre_instructor, especialidad, correo_electronico, telefono, direccion, created_at)
+VALUES 
+    ('Juan Perez', 'Entrenamiento de fuerza', 'juan.perez@email.com', '123456789', 'Calle A #123', '2023-08-29 09:00:03'),
+    ('Ana Rodriguez', 'Yoga', 'ana.rodriguez@email.com', '987654321', 'Calle B #456', '2023-08-29 09:00:08'),
+    ('Carlos González', 'Cardio', 'carlos.gonzalez@email.com', '555555555', 'Calle C #789', '2023-08-12 09:14:03'),
+    ('Laura Martínez', 'Pilates', 'laura.martinez@email.com', '666666666', 'Calle D #012', '2023-08-12 09:20:03'),
+    ('Miguel Sánchez', 'Entrenamiento funcional', 'miguel.sanchez@email.com', '111111111', 'Calle E #345', '2023-07-29 09:10:03');
+
+CREATE TABLE Horarios (
+    horario_id INT AUTO_INCREMENT PRIMARY KEY,
+    dia_semana VARCHAR(20),
+    hora_inicio TIME,
+    hora_fin TIME,
+    created_at DATETIME,
+    updated_at DATETIME NULL,
+    deleted_at DATETIME NULL
+);
+
+INSERT INTO Horarios (dia_semana, hora_inicio, hora_fin, created_at)
+VALUES 
+    ('Lunes', '08:00:00', '10:00:00', '2023-08-29 09:00:03'),
+    ('Martes', '10:30:00', '12:30:00', '2023-08-29 09:00:08'),
+    ('Miércoles', '14:00:00', '16:00:00', '2023-08-12 09:14:03'),
+    ('Jueves', '16:30:00', '18:30:00', '2023-08-12 09:20:03'),
+    ('Viernes', '19:00:00', '21:00:00', '2023-07-29 09:10:03'),
+    ('Sábado', '09:00:00', '11:00:00', '2023-07-29 09:15:03');
+
+CREATE TABLE Membresias (
+    membresia_id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre_membresia VARCHAR(50),
+    duracion_semanas INT,
+    costo DECIMAL(10, 2),
+    created_at DATETIME,
+    updated_at DATETIME NULL,
+    deleted_at DATETIME NULL
+);
+
+INSERT INTO Membresias (nombre_membresia, duracion_semanas, costo, created_at, updated_at, deleted_at)
+VALUES 
+('Membresía Premium', 12, 150.00, '2023-08-29 09:00:03', NULL, NULL),
+('Membresía Estándar', 8, 100.00, '2023-08-29 09:00:08', NULL, NULL),
+('Membresía VIP', 16, 200.00, '2023-08-12 09:14:03', NULL, NULL),
+('Membresía Básica', 4, 50.00, '2023-08-12 09:20:03', NULL, NULL),
+('Membresía Anual', 52, 300.00, '2023-07-29 09:10:03', NULL, NULL);
+
+
+CREATE TABLE Ejercicios (
+    ejercicio_id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre_ejercicio VARCHAR(50),
+    descripcion TEXT,
+    grupo_muscular VARCHAR(50),
+    created_at DATETIME,
+    updated_at DATETIME NULL,
+    deleted_at DATETIME NULL
+);
+
+INSERT INTO Ejercicios (nombre_ejercicio, descripcion, grupo_muscular, created_at, updated_at, deleted_at)
+VALUES 
+    ('Flexiones', 'Ejercicio para fortalecer los músculos pectorales y tríceps.', 'Pecho', '2023-11-13 10:00:00', NULL, NULL),
+    ('Sentadillas', 'Ejercicio para fortalecer los músculos de las piernas y glúteos.', 'Piernas', '2023-11-13 10:05:00', NULL, NULL),
+    ('Plancha', 'Ejercicio para fortalecer el core y los músculos abdominales.', 'Abdominales', '2023-11-13 10:10:00', NULL, NULL),
+    ('Pull-ups', 'Ejercicio para fortalecer los músculos de la espalda y bíceps.', 'Espalda', '2023-11-13 10:15:00', NULL, NULL),
+    ('Burpees', 'Ejercicio cardiovascular que involucra todo el cuerpo.', 'Cuerpo completo', '2023-11-13 10:20:00', NULL, NULL);
+
+CREATE TABLE Grupos (
+    grupo_id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre_grupo VARCHAR(50),
+    horario_id INT,
+    created_at DATETIME,
+    updated_at DATETIME NULL,
+    deleted_at DATETIME NULL,
+    FOREIGN KEY (horario_id) REFERENCES Horarios(horario_id)
+);
+
+INSERT INTO Grupos (nombre_grupo, horario_id, created_at)
+VALUES 
+    ('Grupo A', 1, '2023-08-29 09:00:03'),
+    ('Grupo B', 2, '2023-08-29 09:15:08'),
+    ('Grupo C', 3, '2023-08-12 09:14:03'),
+    ('Grupo D', 4, '2023-08-12 09:20:03'),
+    ('Grupo E', 5, '2023-07-29 09:10:03'),
+    ('Grupo F', 6, '2023-07-29 09:30:03');
+
+CREATE TABLE Citas (
+    cita_id INT AUTO_INCREMENT PRIMARY KEY,
+    cliente_id INT,
+    grupo_id INT,
+    instructor_id INT,
+    fecha_cita DATE,
+    hora_cita TIME,
+    created_at DATETIME,
+    updated_at DATETIME NULL,
+    deleted_at DATETIME NULL,
+    FOREIGN KEY (cliente_id) REFERENCES Clientes(cliente_id),
+    FOREIGN KEY (grupo_id) REFERENCES Grupos(grupo_id),
+    FOREIGN KEY (instructor_id) REFERENCES Instructores(instructor_id) 
+);
+
+INSERT INTO Citas (cliente_id, grupo_id, instructor_id, fecha_cita, hora_cita, created_at)
+VALUES 
+(1, 1, 1, '2023-11-13', '09:30:00', '2023-11-13 09:00:03'),
+(2, 2, 2, '2023-11-14', '10:00:00', '2023-11-13 09:00:08'),
+(3, 3, 3, '2023-11-15', '11:30:00', '2023-11-12 09:14:03'),
+(4, 1, 2, '2023-11-16', '12:00:00', '2023-11-12 09:20:03'),
+(5, 2, 3, '2023-11-17', '13:30:00', '2023-11-07 09:10:03');
